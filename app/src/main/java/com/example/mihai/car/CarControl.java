@@ -21,6 +21,9 @@ public class CarControl {
     private final int LEFT = 3;
     private final int RIGHT = 4;
     private final int BRAKE = 0;
+    private final char LIGHT_ON = 'a';
+    private final char LIGHT_OFF = 'b';
+    private final char HORN = 'c';
 
     private int mSpeed;
     private Button mForwardButton;
@@ -29,11 +32,13 @@ public class CarControl {
     private Button mRightButton;
     private Button mEmergencyBrake;
     private Switch mHighSpeedSwitch;
+    private Switch mLightSwitch;
+    private Button mHornButton;
 
     private View.OnClickListener mClickListener;
     private BluetoothGatt mGatt;
 
-    public CarControl(Button fwd, Button bwd, Button left, Button right, Button brk, Switch spd, BluetoothGatt gatt) {
+    public CarControl(Button fwd, Button bwd, Button left, Button right, Button brk, Switch spd, Switch light, Button horn, BluetoothGatt gatt) {
         mGatt = gatt;
         mSpeed = SLOW_SPEED;
 
@@ -48,6 +53,8 @@ public class CarControl {
         mRightButton = right;
         mEmergencyBrake = brk;
         mHighSpeedSwitch = spd;
+        mLightSwitch = light;
+        mHornButton = horn;
 
         setButtonsListener();
     }
@@ -59,6 +66,8 @@ public class CarControl {
         mRightButton.setOnClickListener(mClickListener);
         mEmergencyBrake.setOnClickListener(mClickListener);
         mHighSpeedSwitch.setOnClickListener(mClickListener);
+        mLightSwitch.setOnClickListener(mClickListener);
+        mHornButton.setOnClickListener(mClickListener);
     }
 
     private void setDrivingDirection(int id) {
@@ -81,6 +90,12 @@ public class CarControl {
             case R.id.enable_high_speed_switch:
                 mSpeed = mHighSpeedSwitch.isChecked() ? HIGH_SPEED : SLOW_SPEED;
                 Log.i("Switch", "" + mHighSpeedSwitch.isChecked());
+                break;
+            case R.id.light_switch:
+                sendMessage("" + (mLightSwitch.isChecked() ? LIGHT_ON : LIGHT_OFF));
+                break;
+            case R.id.horn_button:
+                sendMessage("" + HORN);
                 break;
         }
     }

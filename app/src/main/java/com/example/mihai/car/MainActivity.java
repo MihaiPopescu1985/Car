@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.right_button),
                     findViewById(R.id.emergecy_brake_button),
                     findViewById(R.id.enable_high_speed_switch),
+                    findViewById(R.id.light_switch),
+                    findViewById(R.id.horn_button),
                     mBluetoothGatt);
         }
     }
