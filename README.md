@@ -5,4 +5,4 @@
 Part of the project :
 https://github.com/MihaiPopescu1985/arduino_car
 
- <img src="Screenshot_20181110-180302.png" alt="App screenshot"> 
+ <img src="Screenshot_20181129-082221.png" alt="App screenshot"> 
